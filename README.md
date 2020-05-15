@@ -64,6 +64,7 @@ Components from the following libraries were used, but these are not required in
 -   [Yatara KiCad library](https://github.com/yatara-cc/kicad)
 -   [TMK symbol library](https://github.com/tmk/kicad_lib_tmk)
 -   [TMK footprint library](https://github.com/tmk/keyboard_parts.pretty )
+-   [SnapEDA GCT_USB4105_REVA libraries](https://www.snapeda.com/parts/USB4105-GF-A/GCT/view-part/)
 
 
 #### Export Gerber files for manufacture

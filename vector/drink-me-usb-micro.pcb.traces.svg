@@ -1,0 +1,337 @@
+<svg
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    width="148.006mm"
+    height="210.007mm"
+    viewBox="0 0 148.006 210.007"
+    >
+  <sodipodi:namedview
+      inkscape:document-units="mm"
+      units="mm"
+      />
+
+  <g
+      inkscape:label="F.Cu"
+      inkscape:groupmode="layer"
+      id="layer-0"
+      style="display:inline"
+      >
+    <g
+        inkscape:label="1"
+        inkscape:groupmode="layer"
+        id="layer-0-0"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 71.2 76 L 69.6 74.4"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 84.25 64.925 L 79.65 64.925"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 73.6 88 L 73.6 87.05 L 73.6 86"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 73.6 87.05 L 73.6 89.6 L 72.975 90.4"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 34.85 84.3 L 41.15 84.3 L 42.8 82.8 L 44 82.8 L 46.8 82.8 L 52.8 84.4"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 80.4 84 L 78.25 84 L 77.2 84"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 54.090004 86.076038 L 53.191978 84.520612 L 52.701288 84.389132"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 44 82.8 L 43.8 82.8"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 117.36 71.46 L 117.36 66.4 L 116.56 65.6 L 89.2 65.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 95.261114 72.43144 L 93.6 66.6 L 92.8 65.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 88.821778 86.151166 L 87.397378 85.471675 L 90.243856 84.890136 L 92.808885 85.962808 L 95.655363 85.38127 L 94.230963 84.701779"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 31.91 68.92 L 31.91 66.4 L 32.71 65.6 L 58.8 65.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 54.623012 70.306689 L 55.6 66.4 L 56.4 65.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.1 67.9 L 70.45 67.9 L 71.05 66.45 L 76.85 66.45 L 77.45 67.9 L 75.1 67.9 L 74.95 66.45"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 72.95 66.45 L 72.65 69.15 L 71.45 69.15 L 70.45 67.9"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 77.45 67.9 L 76.45 69.15"/>
+    </g>
+
+    <g
+        inkscape:label="2"
+        inkscape:groupmode="layer"
+        id="layer-0-1"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 80.4 68 L 80.5125 66.4"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.3 69.6 L 75.3 71.6 L 75.6 72"/>
+    </g>
+
+    <g
+        inkscape:label="3"
+        inkscape:groupmode="layer"
+        id="layer-0-2"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 73.6 77.2 L 73.6 78.55 L 73.6 77.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 67.025 66.4 L 67.2 68"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 69.6 75.6 L 68.4 74.4 L 67.2 74"/>
+    </g>
+
+    <g
+        inkscape:label="4"
+        inkscape:groupmode="layer"
+        id="layer-0-3"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 74.4 87.05 L 74.4 84.8"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 70.975 74 L 72 75.2"/>
+    </g>
+
+    <g
+        inkscape:label="11"
+        inkscape:groupmode="layer"
+        id="layer-0-4"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 74.65 69.6 L 74.6 72.8 L 74.975 74"/>
+    </g>
+
+    <g
+        inkscape:label="12"
+        inkscape:groupmode="layer"
+        id="layer-0-5"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 74 69.6 L 74 72.8 L 73.025 74"/>
+    </g>
+
+    <g
+        inkscape:label="13"
+        inkscape:groupmode="layer"
+        id="layer-0-6"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 69.75 83.2 L 67.6 83.2"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 45.36 71.46 L 45.36 67.2 L 46.16 66.4"/>
+    </g>
+
+    <g
+        inkscape:label="14"
+        inkscape:groupmode="layer"
+        id="layer-0-7"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 69.75 80.8 L 68.4 80.8"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 103.91 68.92 L 103.91 67.2 L 103.11 66.4"/>
+    </g>
+
+    <g
+        inkscape:label="15"
+        inkscape:groupmode="layer"
+        id="layer-0-8"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 69.75 81.6 L 71.2 81.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 80.4 73.6 L 81.612011 73.459105"/>
+    </g>
+
+    <g
+        inkscape:label="16"
+        inkscape:groupmode="layer"
+        id="layer-0-9"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 68 82 L 68.4 82.4 L 69.75 82.4"/>
+    </g>
+
+    <g
+        inkscape:label="17"
+        inkscape:groupmode="layer"
+        id="layer-0-10"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.2 85.6 L 75.2 87.05"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 77.025 74 L 76 75.2"/>
+    </g>
+
+    <g
+        inkscape:label="18"
+        inkscape:groupmode="layer"
+        id="layer-0-11"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 68.4 85.6 L 69.75 85.6"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 34.85 80.5 L 41.15 80.5 L 42.8 82 L 46.8 82 L 52.8 83.6 L 54.747404 83.622586"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 66.190074 90.16529 L 67.2 89.2"/>
+    </g>
+
+    <g
+        inkscape:label="19"
+        inkscape:groupmode="layer"
+        id="layer-0-12"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.2 88.8 L 75.025 90.4 L 76 89.6 L 76 87.05 L 76.8 87.05 L 76.8 88"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 76.8 87.05 L 76.8 89.6 L 77.375 90.4"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 79.6 83.2 L 78.25 83.2 L 79.2 83.2"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.025 90.4 L 74 91.5"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 82.8 86.4 L 83.790074 89.63471 L 83 91.1"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 64.9 91.1 L 64.209926 89.63471 L 64 88.8 L 60.714323 87.851019 L 58.996907 87.390839"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 83.4875 66.4 L 83.2 68"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 78 75.2 L 78 72.8"/>
+    </g>
+
+    <g
+        inkscape:label="20"
+        inkscape:groupmode="layer"
+        id="layer-0-13"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 78.25 84.8 L 84.4 84.8 L 85.10965 84.661165 L 90.518834 83.211778 L 92.368893 84.320734 L 95.124784 83.401122"/>
+    </g>
+
+    <g
+        inkscape:label="25"
+        inkscape:groupmode="layer"
+        id="layer-0-14"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 57.200856 84.279987 L 57.661036 82.56257 L 59.6 81.6 L 64 81.6 L 67.2 78.4 L 69.6 78.4 L 70.8 77.2 L 71.6 77.2 L 72 77.6 L 72 78.55"/>
+    </g>
+
+    <g
+        inkscape:label="26"
+        inkscape:groupmode="layer"
+        id="layer-0-15"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 56.543455 86.733438 L 58.098881 85.835413 L 58.887762 82.891271 L 60 82.4 L 64.4 82.4 L 67.6 79.2 L 70 79.2 L 70.8 78.4 L 71.2 78.55"/>
+    </g>
+
+    <g
+        inkscape:label="27"
+        inkscape:groupmode="layer"
+        id="layer-0-16"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 69.75 80 L 68 80 L 64.8 83.2 L 60.4 83.2 L 60.114488 83.219971 L 59.654307 84.937387"/>
+    </g>
+
+    <g
+        inkscape:label="29"
+        inkscape:groupmode="layer"
+        id="layer-0-17"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 72.8 87.05 L 72.8 88.4 L 72.4 88.8 L 71.2 88.8 L 70.8 89.2 L 70.625 90.4"/>
+    </g>
+
+    <g
+        inkscape:label="32"
+        inkscape:groupmode="layer"
+        id="layer-0-18"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 78.25 85.6 L 84.4 85.6 L 85.420233 85.820276 L 85.91013 86.103118 L 86.634824 88.807711 L 87.124722 89.090553 L 89.442944 88.469388 L 90.683848 86.53221 L 87.927957 87.451823"/>
+    </g>
+  </g>
+
+  <g
+      inkscape:label="B.Cu"
+      inkscape:groupmode="layer"
+      id="layer-1"
+      style="display:inline"
+      >
+    <g
+        inkscape:label="1"
+        inkscape:groupmode="layer"
+        id="layer-1-0"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 80.4 84 L 81.2 86.4"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 82 88.1 L 88.821778 86.151166 L 94.230963 84.701779"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 55.64543 85.178012 L 54.090003 86.076038"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 66.35457 88.021988 L 55.6 85.2"/>
+    </g>
+
+    <g
+        inkscape:label="2"
+        inkscape:groupmode="layer"
+        id="layer-1-1"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.6 72 L 79.2 72 L 80.4 70.8 L 80.4 70.4 L 80.4 68"/>
+    </g>
+
+    <g
+        inkscape:label="3"
+        inkscape:groupmode="layer"
+        id="layer-1-2"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 69.6 75.6 L 70 76 L 73.2 76 L 73.6 76.4 L 73.6 77.2"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 67.2 68 L 67.2 72.4 L 67.2 74"/>
+    </g>
+
+    <g
+        inkscape:label="4"
+        inkscape:groupmode="layer"
+        id="layer-1-3"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 74.4 84.8 L 74.4 76 L 73.6 75.2 L 72 75.2"/>
+    </g>
+
+    <g
+        inkscape:label="13"
+        inkscape:groupmode="layer"
+        id="layer-1-4"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 67.6 83.2 L 66.4 80.8 L 66.4 72 L 64.4 70 L 50.4 66.4 L 46.16 66.4"/>
+    </g>
+
+    <g
+        inkscape:label="14"
+        inkscape:groupmode="layer"
+        id="layer-1-5"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 68.4 80.8 L 68 80 L 68 74.8 L 69.2 73.6 L 80 73.6 L 83.6 70 L 97.6 66.4 L 103.11 66.4"/>
+    </g>
+
+    <g
+        inkscape:label="15"
+        inkscape:groupmode="layer"
+        id="layer-1-6"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 71.2 81.6 L 68.8 79.2 L 68.8 75.2 L 69.6 74.4 L 80.4 74.4 L 81.612011 73.459105"/>
+    </g>
+
+    <g
+        inkscape:label="16"
+        inkscape:groupmode="layer"
+        id="layer-1-7"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 68 82 L 67.6 81.2 L 67.2 80.4 L 67.2 76"/>
+    </g>
+
+    <g
+        inkscape:label="17"
+        inkscape:groupmode="layer"
+        id="layer-1-8"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 75.2 85.6 L 75.2 76 L 76 75.2"/>
+    </g>
+
+    <g
+        inkscape:label="18"
+        inkscape:groupmode="layer"
+        id="layer-1-9"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 67.2 89.2 L 68 86 L 68.4 85.6 L 67.2 85.6 L 56.44543 82.778012 L 54.890003 83.676038"/>
+    </g>
+
+    <g
+        inkscape:label="19"
+        inkscape:groupmode="layer"
+        id="layer-1-10"
+        style="display:inline"
+        >
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 83 91.1 L 81.7 91.5 L 74 91.5 L 66.3 91.5 L 64.9 91.1"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 82.8 86.4 L 81.6 83.2 L 79.6 83.2"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 78 75.2 L 77.2 75.2 L 76 76.4 L 76 88 L 75.2 88.8"/>
+      <path style="fill: none; stroke: #000000; stroke-width: 0.1;" d="M 78 72.8 L 79.6 72.8 L 83.2 69.2 L 83.2 68"/>
+    </g>
+  </g>
+</svg>

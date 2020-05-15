@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-VERSION := v0.1
+VERSION := v0.2
 VERSION_FLAT := $(shell echo $(VERSION) | sed 's/\W/-/g')
 VENV := .venv
 
@@ -20,9 +20,6 @@ stl : \
 	stl/drink-me.$(VERSION).base.stl \
 	stl/drink-me.$(VERSION).rest.stl
 
-gerber : gerber/drink-me.$(VERSION).gerber.zip
-
-
 install-python :
 	virtualenv --python python3 --system-site-packages $(VENV)
 	$(VENV)/bin/pip install \
@@ -34,11 +31,25 @@ uninstall-python :
 	rm -rf .venv*
 
 
+print-measurements :
+	mkdir -p stl /tmp/drink-me/
+	openscad -o /tmp/drink-me/null.stl \
+	    -D debug_measurements=true \
+	    openscad/drink-me.scad 2>&1 | \
+	  sed 's/ECHO: \("\(.*\)"\)\?$$/\2/'
+
+update-version :
+	sed -i \
+	  -e 's/\((rev \)v[0-9a-z.-]*\()\)/\1$(VERSION)\2/' \
+	  -e 's/\((gr_text \)v[0-9a-z.-]*\( (\)/\1$(VERSION)\2/' \
+	  kicad/drink-me*/drink-me.kicad_pcb
+	sed -i \
+	  -e 's/\(Rev "\)v[0-9a-z.-]*\("\)/\1$(VERSION)\2/' \
+	  kicad/drink-me*/drink-me.sch
+
+
 vector/drink-me.pcb.%.dxf : openscad/drink-me.pcb.%.scad openscad/drink-me.scad
 	openscad -o $@ $<
-
-vector/drink-me.pcb.traces.svg : kicad/drink-me/drink-me.kicad_pcb
-	kicad2svg $< $@
 
 show-pcb-edge-cuts : vector vector/drink-me.pcb.edge-cuts.dxf
 	dxf2kicad $^
@@ -46,7 +57,6 @@ show-pcb-edge-cuts : vector vector/drink-me.pcb.edge-cuts.dxf
 show-pcb-margin : vector vector/drink-me.pcb.margin.dxf
 	dxf2kicad $^
 
-export-pcb-traces : vector vector/drink-me.pcb.traces.svg
 export-pcb-polygons : \
 	vector/drink-me.pcb.edge-cuts.dxf \
 	vector/drink-me.pcb.margin.dxf
@@ -57,10 +67,36 @@ stl/drink-me.$(VERSION).%.stl : openscad/drink-me.%.scad openscad/drink-me.scad
 	openscad -o /tmp/drink-me/$@ $<
 	meshlabserver -i /tmp/drink-me/$@ -o $@
 
-gerber/drink-me.$(VERSION).gerber.zip : kicad/drink-me/drink-me.kicad_pcb kicad/kiplot.config.yaml
+
+define PCB
+
+gerber/drink-me.$(VERSION)-$(1).gerber.zip : kicad/drink-me-$(1)/drink-me.kicad_pcb kicad/kiplot.config.yaml
 	mkdir -p gerber
-	.venv/bin/kiplot -v \
-	  -b $< \
+	$(VENV)/bin/kiplot -v \
+	  -b $$< \
 	  -c kicad/kiplot.config.yaml \
-	  -d kicad/drink-me/
-	zip -j $@ kicad/drink-me/gerber/*
+	  -d kicad/drink-me-$(1)/
+	zip -j $$@ kicad/drink-me-$(1)/gerber/*
+
+vector/drink-me-$(1).pcb.traces.svg : kicad/drink-me-$(1)/drink-me.kicad_pcb
+	kicad2svg $$< $$@
+
+
+GERBER += $(GERBER) \
+	gerber/drink-me.$(VERSION)-$(1).gerber.zip
+
+TRACES_SVG += $(TRACES_SVG) \
+	vector/drink-me-$(1).pcb.traces.svg
+
+endef
+
+
+$(eval $(call PCB,usb-c))
+$(eval $(call PCB,usb-mini))
+$(eval $(call PCB,usb-micro))
+
+
+gerber : $(GERBER)
+
+export-pcb-traces : $(TRACES_SVG)
+

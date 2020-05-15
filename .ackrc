@@ -1,4 +1,6 @@
 --ignore-dir=.git*
 --ignore-dir=.venv
+--ignore-dir=gerber
+--ignore-dir=stl
 --ignore-file=match:flycheck_.*
 --ignore-file=match:.*\.net

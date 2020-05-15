@@ -11,5 +11,3 @@ translate([origin_x, -origin_y]) {
           }
      }
 }
-
-key_copy(verbose=true);
