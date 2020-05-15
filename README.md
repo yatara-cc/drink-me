@@ -21,9 +21,72 @@ Drink Me ships with [VIA](https://caniusevia.com/) firmware preinstalled. To cus
 You can also use the online [QMK Configurator](https://config.qmk.fm/#/yatara/drink_me/LAYOUT) to create a custom firmware for your Drink Me. Alternatively download the [QMK](https://github.com/qmk/qmk_firmware) source where you will find [example code and keymaps for Drink Me](https://github.com/qmk/qmk_firmware/tree/master/keyboards/yatara/drink_me) that can be modified to use any of QMK's [extensive features](https://docs.qmk.fm/#/).
 
 
-## Support
+### Help & Support
 
 Buyers can access support by sending a message to the email address on the PayPal invoice.
+
+
+## Modification and Development
+
+This project is released under the GNU General Public License v3. You are encouraged to modify its content to meet your own requirements provided you respect the terms of the licence.
+
+This repository includes automated scripts for various tasks. However, the PCB and geometry files can be modified in their respective software without recourse to these scripts.
+
+
+### Dependencies for automated scripts
+
+-   POSIX OS (eg. Linux or OSX)
+-   Bash
+-   Gnu Make
+-   Python >= 3.7
+-   Meshlab
+
+Python modules:
+
+-   GeoTK
+-   Kiplot
+
+To install Python modules run:
+
+```
+make install-python
+```
+
+
+### PCB
+
+#### Dependencies
+
+-   [KiCad](https://kicad-pcb.org/download/) >= 5.1
+
+Components from the following libraries were used, but these are not required in order to use the PCB files.
+
+-   [Yatara KiCad library](https://github.com/yatara-cc/kicad)
+-   [TMK symbol library](https://github.com/tmk/kicad_lib_tmk)
+-   [TMK footprint library](https://github.com/tmk/keyboard_parts.pretty )
+
+
+#### Export Gerber files for manufacture
+
+```
+make gerber
+ll gerber
+```
+
+
+### Printed Parts
+
+#### Dependencies
+
+-   OpenSCAD
+
+
+#### Export STL files for manufacture
+
+```
+make stl
+ll stl
+```
 
 
 ## References
@@ -40,3 +103,6 @@ Buyers can access support by sending a message to the email address on the PayPa
 -   [QMK Pull Request](https://github.com/qmk/qmk_firmware/pull/8039) - 2020-01-30
 -   [QMK Configurator Pull Request](https://github.com/qmk/qmk_configurator/pull/648) - 2020-01-30
 -   [VIA Pull Request](https://github.com/the-via/keyboards/pull/37) - 2020-01-31
+
+
+> ‘It was much pleasanter at home,’ thought poor Alice, ‘when one wasn’t always growing larger and smaller... I almost wish I hadn’t gone down that rabbit-hole

@@ -1,0 +1,7 @@
+*.bak
+*-bak
+*.net
+fp-info-cache
+_autosave*
+gerber/
+
