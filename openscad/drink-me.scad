@@ -22,17 +22,23 @@ plate_thickness = 1.2;
 plate_switch_clearance = 0.25;
 plate_switch_r = 0.3;
 
-base_clip_size = 1;
-base_clip_overlap = 0.4;
+base_clip_overlap = 0.55;
 base_clearance_xy = 0.3;
 base_clearance_z = 0.2;
 base_clearance_back_z = 0.8;
 base_rest_chamfer = base_clearance_z * 4;
+base_usb_port_width = 12;
+
+base_clip_neg_ty = 0; // 0.5;
+base_clip_neg_inset_y = 0.5;  // From each side
+base_clip_neg_inset_z = 0;  // Only from top
 
 rest_chamfer_x = 2; // Prevents sharp edges on top layer.
 rest_chamfer_z = 0.2; // Layer height x2
+case_chamfer_z = 0; // Prevent the last print layer being a single line if necessary.
 
-support_block_xy = 1.5;
+support_block_xy_start = 0.975;
+support_block_xy_end = 1.625;
 support_block_z = 0.5;
 
 
@@ -40,7 +46,7 @@ support_block_z = 0.5;
 
 unit = 19.05;  // Standard key pitch; equal to 3/4 inch
 switch_base_height = 5;  // Height from MX switch base to top of plate
-switch_plate_xy = 14;
+switch_cutout_xy = 14;
 switch_pin_height = 3.25;  // Extension of switch pins below base
 overlap = 0.1;  // An arbitrary small constant used for Boolean operations
 
@@ -52,10 +58,14 @@ ergo_angle = 15;
 
 typing_angle = 8;
 
-case_point = false;  // `true` for a sharp point; `false` for a truncated point
+case_height = 20.44;
+case_point = false;  // `true` for a sharp point; `false` for a chiselled point
 case_bezel = 4;
 case_bevel = 1;
-case_wall_thickness = 4;
+case_side_wall_thickness = 4;
+case_slot_thickness_front = 1.73966;  // Minimum thickness of front of case at PCB slot.
+
+integrated_plate = true;
 
 key_cutaway_xy = 20;
 key_cutaway_bevel = 0.5;
@@ -64,32 +74,55 @@ key_cutaway_depth = 7.5;
 rest_gap = 0.5;
 rest_length = 22;
 
+base_rest = false;
 base_height = 1;
+base_clip_ty = -10.3;
+base_clip_size = 1;  // rename to step;
+base_clip_length = 11;
 
 base_back_thickness = 1.6;
-base_clip_y = 5;
+base_slot_clearance_back = 0.43766 + base_back_thickness;
 
 $fn = 16;
 
 
 // Derived values
 
-pcb_inner = case_bezel - case_wall_thickness;
+pcb_inner = case_bezel - case_side_wall_thickness;
 pcb_border = pcb_inner + pcb_slot_overlap;
 pcb_outer = pcb_border + pcb_slot_clearance_xy;
+pcb_top_depth = -switch_base_height;
+pcb_bottom_depth = pcb_top_depth - pcb_thickness;
+pcb_depth_front = key_cutaway_depth - pcb_top_depth;
+pcb_depth_back = key_cutaway_depth - pcb_bottom_depth;
+
+pcb_dy_front = (
+     -(case_bezel - pcb_border)
+     -sin(typing_angle) * pcb_depth_front
+     + case_slot_thickness_front
+     );
+pcb_dy_back = (
+     +(case_bezel - pcb_border)
+     -sin(typing_angle) * pcb_depth_back
+     - base_slot_clearance_back
+     );
+plate_dy_front = -1;
 
 key_x1 = ergo_dist_x / 2 + unit * 1.5;
 hull_x1 = ergo_dist_x / 2 + unit * 1.5 + key_cutaway_xy * 0.5;
 hull_y1 = key_cutaway_xy * 0.5;
+hull_x2 = hull_x1 + case_bezel;
+hull_y2 = hull_y1 + case_bezel;
 
+sina = sin(typing_angle);
+cosa = cos(typing_angle);
 
+y_align = -sina * key_cutaway_depth;
 
-// Manual update variables
-
-case_height = 11;
-
-pcb_dy_lo = -3;
-pcb_dy_hi = -1;
+case_y_max = cosa * (hull_y2 + y_align);
+case_z_max = cosa * key_cutaway_depth + sina * hull_y2;
+case_z_min = case_z_max - case_height;
+case_extrusion_depth = case_height - case_z_max + sina * y_align;
 
 
 // Debug variables
@@ -177,11 +210,11 @@ module key_copy (outside=true, inside=true, left=true, right=true, verbose=false
 
 module case_extrude (offset=0) {
      difference() {
-          translate([0, -sin(typing_angle) * key_cutaway_depth, 0]) {
+          translate([0, -sina * key_cutaway_depth, 0]) {
                rotate([-typing_angle, 0, 0]) {
-                    translate([0, 0, -case_height - offset]) {
+                    translate([0, 0, -case_extrusion_depth - offset]) {
                          linear_extrude(100) {
-                              scale([1, cos(typing_angle)]) {
+                              scale([1, cosa]) {
                                    children();
                               }
                          }
@@ -198,26 +231,17 @@ module case_extrude (offset=0) {
 
 
 module case_transform () {
-     rotate([typing_angle, 0, 0]) {
-          translate([0, -sin(typing_angle) * key_cutaway_depth, 0]) {
-               rotate([-typing_angle, 0, 0]) {
-                    translate([
-                                   0,
-                                   (key_cutaway_xy / 2 + case_bezel) * cos(typing_angle),
-                                   -case_height
-                                   ]) {
-                         children();
-                    }
-               }
-          }
+     translate([0, case_y_max, case_z_min]) {
+          children();
      }
 }
+
 
 
 module base_transform () {
      case_transform() {
           translate([0, 0, -base_height - base_clearance_z]) {
-               scale([1, cos(typing_angle)]) {
+               scale([1, cosa]) {
                     translate([0, -hull_y1 - case_bezel, 0]) {
                          children();
                     }
@@ -241,7 +265,7 @@ module cross_section () {
                          }
                     }
                } else if (section == "key-0") {
-                    translate([-75, 0, -50]) {
+                    translate([-65, 0, -50]) {
                          linear_extrude(100) {
                               centered_square(100);
                          }
@@ -250,7 +274,7 @@ module cross_section () {
                     translate([
                                    -ergo_dist_x / 2 - unit * 2,
                                    -unit * .5,
-                                   -case_height - base_height
+                                   -case_extrusion_depth - base_height
                                    ]) {
                          linear_extrude(5) {
                               centered_square([20, 30]);
@@ -390,12 +414,12 @@ module snout_2d (border=case_bezel, bevel=case_bevel) {
 }
 
 
-module pcb_slot_2d (border, inside=true, outside=true) {
+module pcb_slot_2d (border, dy=0, inside=true, outside=true) {
      union() {
-          translate([0, -3]) {
+          translate([0, dy]) {
                hull_keys(border, inside=inside, outside=outside);
           }
-          translate([0, 15]) {
+          translate([0, 10]) {
                hull_keys(border, inside=inside, outside=outside);
           }
      }
@@ -404,12 +428,50 @@ module pcb_slot_2d (border, inside=true, outside=true) {
 
 module pcb_2d (border) {
      union() {
-          translate([0, pcb_dy_lo]) {
+          translate([0, pcb_dy_front]) {
                hull_keys(border);
           }
-          translate([0, pcb_dy_hi]) {
+          translate([0, pcb_dy_back]) {
                hull_keys(border);
           }
+     }
+}
+
+
+module plate_2d (border) {
+     union() {
+          translate([0, plate_dy_front]) {
+               hull_keys(border);
+          }
+          translate([0, 0]) {
+               hull_keys(border);
+          }
+     }
+}
+
+
+module switch_cutout() {
+     if (integrated_plate) {
+          minkowski() {
+               centered_square(switch_cutout_xy + plate_switch_clearance - 2 * plate_switch_r);
+               circle(plate_switch_r, $fn=8);
+          }
+     } else {
+          centered_square(switch_cutout_xy);
+          for (a = [0, 180]) {
+               rotate(a) {
+                    translate([0, -switch_cutout_xy / 2 + 1]) {
+                         centered_square([15.6, 3.1], [-0.5, 0]);
+                    }
+               }
+          }
+     }
+}
+
+
+module switchplate_cuts_2d () {
+     key_copy() {
+          switch_cutout();
      }
 }
 
@@ -466,24 +528,26 @@ module rest_3d (offset=0) {
 }
 
 
-module base_clip () {
+module base_clip (ty=0, inset_y=0, inset_z=0) {
+     // `inset_z` lowers the top of the clip, reducing its height.
      edge_x = hull_x1 + pcb_inner;
-     length = 10;
 
      case_transform() {
-          translate([
-                         -edge_x,
-                         -base_clip_y - base_clearance_xy,
-                         0
-                         ]) {
+          translate([-edge_x, base_clip_ty + ty, 0]) {
                hull() {
-                    translate([0, -base_clip_size, base_clip_size]) {
-                         linear_extrude(base_clip_size) {
-                              centered_square([base_clip_size, length - base_clip_size * 2], [0, -1]);
+                    translate([0, 0, base_clip_size]) {
+                         linear_extrude(base_clip_size - inset_z) {
+                              centered_square([
+                                                   base_clip_size,
+                                                   base_clip_length - (base_clip_size + inset_y) * 2
+                                                   ], [0, -0.5]);
                          }
                     }
-                    linear_extrude(base_clip_size * 3) {
-                         centered_square([base_clip_size, length], [-1, -1]);
+                    linear_extrude(base_clip_size * 3 - inset_z) {
+                         centered_square([
+                                              base_clip_size,
+                                              base_clip_length - (inset_y) * 2,
+                                              ], [-1, -0.5]);
                     }
                }
           }
@@ -492,18 +556,19 @@ module base_clip () {
 
 
 module cavity_pos(offset_xy = -base_clearance_xy) {
+     depth = integrated_plate ? -plate_thickness : 1;
      intersection() {
           rotate([typing_angle, 0]) {
-               translate([0, 0, -case_height * 2]) {
-                    linear_extrude(case_height * 2 - plate_thickness - base_clearance_back_z) {
-                         pcb_slot_2d(pcb_inner + offset_xy);
+               translate([0, 0, -case_extrusion_depth * 2]) {
+                    linear_extrude(case_extrusion_depth * 2 + depth - base_clearance_back_z) {
+                         pcb_slot_2d(pcb_inner + offset_xy, dy=pcb_dy_front);
                     }
                }
           }
           case_transform() {
                translate([0, 0, -base_clearance_z - overlap]) {
                     linear_extrude(50) {
-                         centered_square(200);
+                         centered_square(120);
                     }
                }
           }
@@ -516,23 +581,13 @@ module base_back () {
 
 
      // Front position of the slot:
-     sldy = -(hull_y1 - pcb_dy_lo - base_clearance_xy);
-     sldz = -switch_base_height - pcb_thickness - pcb_slot_clearance_z;
-     sly = cos(typing_angle) * sldy - sin(typing_angle) * sldz;
-     slz = sin(typing_angle) * sldy + cos(typing_angle) * sldz - 1.5;
+     sldy = -(hull_y1 - pcb_dy_front - base_clearance_xy);
+     sldz = -switch_base_height - pcb_thickness - base_clearance_xy;
+     sly = cosa * sldy - sina * sldz;
+     slz = sina * sldy + cosa * sldz - 1.5;
      ch = 10;
      px = hull_x1 - base_clip_size - base_clearance_xy;
-     pz = 2 * base_clip_size + base_clip_overlap * 2 + base_clearance_xy * 2;
-
-     module front_chamfer () {
-          translate([-px, sly, slz]) {
-               rotate([135 + 26, 4, 0]) {
-                    linear_extrude(ch) {
-                         centered_square([hull_x1, ch], [0, -1]);
-                    }
-               }
-          }
-     }
+     pz = 2 * base_clip_size + base_clip_overlap * 2 + base_clearance_z * 1.5;
 
      module back_chamfer () {
           case_transform() {
@@ -573,7 +628,7 @@ module base_back () {
      module back_plate (thickness) {
           case_transform() {
                translate([0, 0, -base_clearance_z - overlap]) {
-                    linear_extrude(case_height) {
+                    linear_extrude(case_extrusion_depth + 3) {
                          centered_square([hull_x1 * 2, thickness], [-0.5, -1]);
                     }
                }
@@ -590,13 +645,13 @@ module base_back () {
                          cavity_pos();
                     }
                     translate([base_clearance_xy, 0, 0]) {
-                         base_clip();
+                         base_clip(
+                              ty=base_clip_neg_ty,
+                              inset_y=base_clip_neg_inset_y,
+                              inset_z=base_clip_neg_inset_z
+                              );
                     }
                }
-               /* intersection() { */
-               /*      front_chamfer(); */
-               /*      cavity_pos(); */
-               /* } */
           }
      }
      intersection() {
@@ -612,7 +667,9 @@ module base_back () {
 }
 
 
-module base_3d () {
+module base_3d (rest=true) {
+     base_rest = rest;
+
      module rest_plate () {
           base_transform() {
                translate([0, 0, base_height - overlap]) {
@@ -631,17 +688,17 @@ module base_3d () {
 
      module rest_chamfered_3 (chamfer) {
           // Back of rest 2D to origin:
-          y1 = (hull_y1 + case_bezel + rest_gap);
+          y1 = (hull_y2 + rest_gap);
           // Back of base 3D to back of rest 3D:
-          y2 = -(hull_y1 * 2 + case_bezel * 2 + rest_gap) * cos(typing_angle);
-          z2 = -base_clearance_xy;
+          y2 = -(hull_y2 * 2 + rest_gap) * cosa;
+          z2 = -base_clearance_z;
 
           intersection() {
-               rest_3d(base_clearance_xy + overlap);
+               rest_3d(base_clearance_z + overlap);
                case_transform() {
                     translate([0, y2, z2 + overlap + chamfer]) {
                          rotate([-45, 0, 0]) {
-                              scale([1, cos(45) * cos(typing_angle), 1]) {
+                              scale([1, cos(45) * cosa, 1]) {
                                    translate([0, 0, -50]) {
                                         linear_extrude(100) {
                                              translate([0, y1, 0]) {
@@ -662,15 +719,60 @@ module base_3d () {
 
      difference() {
           union () {
-               base_transform() {
-                    linear_extrude(base_height) {
-                         base_2d();
+               base_back();
+               if (base_rest) {
+                    base_transform() {
+                         linear_extrude(base_height) {
+                              base_2d();
+                         }
+                    }
+                    rest_chamfered_3(base_rest_chamfer);
+               } else {
+                    intersection() {
+                         base_transform() {
+                              linear_extrude(base_height * 2) {
+                                   intersection() {
+                                        case_2d();
+                                        centered_square(
+                                             (key_x1 + pcb_inner - base_clip_size - base_clearance_xy) * 2
+                                             + key_cutaway_xy);
+                                   }
+                              }
+                              linear_extrude(base_height * 4.0) {
+                                   intersection() {
+                                        difference() {
+                                             case_2d();
+                                             intersection() {
+                                             union() {
+                                                  case_2d(-1);
+                                                  centered_square([24, 100]);
+                                                  translate([35, 0]) {
+                                                       centered_square([14, 100]);
+                                                  }
+                                                  translate([-35, 0]) {
+                                                       centered_square([14, 100]);
+                                                  }
+                                                  centered_square([100, 100], [-0.5, 0]);
+                                             }
+                                                  centered_square([86, 100]);
+                                             }
+                                        }
+                                        centered_square(
+                                             (key_x1 + pcb_inner - base_clip_size - base_clearance_xy) * 2
+                                             + key_cutaway_xy);
+                                   }
+                              }
+                         }
+                         cavity_pos();
                     }
                }
-               base_back();
-               rest_chamfered_3(base_rest_chamfer);
           }
+          union() {
           usb_3d();
+          translate([0, 0, -0.4]) {
+               pcb_3d();
+          }
+          }
      }
 
 }
@@ -744,29 +846,46 @@ module keys_3d () {
 
 
 module case_3d () {
+     pcb_depth = pcb_top_depth - pcb_thickness;
+     plate_depth = -plate_thickness;
+
      module pcb_cavity () {
-          translate([0, 0, -case_height * 2 - overlap]) {
-               linear_extrude(case_height * 2 + overlap - plate_thickness) {
-                    pcb_slot_2d(pcb_inner);
+          if (integrated_plate) {
+               translate([0, 0, -case_extrusion_depth * 2 - overlap]) {
+                    linear_extrude(case_extrusion_depth * 2 + overlap - plate_thickness) {
+                         pcb_slot_2d(pcb_inner, dy=pcb_dy_front);
+                    }
+               }
+          } else {
+               translate([0, 0, plate_depth - case_extrusion_depth]) {
+                    linear_extrude(case_extrusion_depth) {
+                         pcb_slot_2d(pcb_inner, dy=plate_dy_front);
+                    }
+               }
+               translate([0, 0, pcb_depth - case_extrusion_depth]) {
+                    linear_extrude(case_extrusion_depth) {
+                         pcb_slot_2d(pcb_inner, dy=pcb_dy_front);
+                    }
                }
           }
      }
 
-     module pcb_slot () {
-          slot_depth = -switch_base_height - pcb_thickness - pcb_slot_clearance_z;
-
+     module pcb_slot (depth, height, dy, outer, inner) {
           // Add Z clearance below only since there is already a chamfer above:
-          height = pcb_thickness + pcb_slot_clearance_z;  // Slot height
-          chamfer = pcb_outer - pcb_inner;  // Chamfer distance
+          total_depth = depth -pcb_slot_clearance_z;
+          total_height = height + pcb_slot_clearance_z;  // Slot height
+          chamfer = outer - inner;
 
-          translate([0, 0, slot_depth]) {
+          translate([0, 0, total_depth]) {
                for (io = [[false, true], [true, false]]) {
                     hull() {
-                         linear_extrude(height) {
-                              pcb_slot_2d(pcb_outer, inside=io[0], outside=io[1]);
+                         linear_extrude(total_height) {
+                              pcb_slot_2d(outer, dy=dy,
+                                          inside=io[0], outside=io[1]);
                          }
-                         linear_extrude(height + chamfer) {
-                              pcb_slot_2d(pcb_inner, inside=io[0], outside=io[1]);
+                         linear_extrude(total_height + chamfer) {
+                              pcb_slot_2d(inner, dy=dy,
+                                          inside=io[0], outside=io[1]);
                          }
                     }
                }
@@ -774,14 +893,9 @@ module case_3d () {
      }
 
      module plate_cuts () {
-          key_copy() {
-               translate([0, 0, -plate_thickness - overlap]) {
-                    linear_extrude(plate_thickness + overlap * 2) {
-                         minkowski() {
-                              centered_square(switch_plate_xy + plate_switch_clearance - 2 * plate_switch_r);
-                              circle(plate_switch_r, $fn=8);
-                         }
-                    }
+          translate([0, 0, -plate_thickness - overlap]) {
+               linear_extrude(plate_thickness + overlap * 2) {
+                    switchplate_cuts_2d();
                }
           }
      }
@@ -792,20 +906,54 @@ module case_3d () {
           }
      }
 
-     rotate([typing_angle, 0]) {
-          difference() {
-               case_extrude() {
-                    case_2d();
-               }
-               union () {
-                    key_cutaway();
-                    plate_cuts();
-                    pcb_cavity();
-                    pcb_slot();
+     module top_chamfer () {
+          case_transform() {
+               translate([0, overlap, case_height - case_chamfer_z]) {
+                    linear_extrude(case_chamfer_z + overlap) {
+                         centered_square([(hull_x2 + overlap) * 2, 40], [-0.5, -1]);
+                    }
                }
           }
      }
 
+     module cavity_neg () {
+          key_cutaway();
+          pcb_slot(
+               depth=pcb_depth,
+               height=pcb_thickness,
+               dy=pcb_dy_front,
+               outer=pcb_outer,
+               inner=pcb_outer - 3.4
+               );
+          pcb_cavity();
+          
+          if (integrated_plate) {
+               plate_cuts();
+          } else {
+               pcb_slot(
+                    depth=plate_depth,,
+                    height=plate_thickness,
+                    dy=plate_dy_front,
+                    outer=pcb_outer,
+                    inner=pcb_outer - pcb_slot_clearance_z
+                    );
+          }
+     }
+     
+
+     difference() {
+          rotate([typing_angle, 0]) {
+               difference() {
+                    case_extrude() {
+                         case_2d();
+                    }
+                    union () {
+                         cavity_neg();
+                    }
+               }
+          }
+          top_chamfer();
+     }
      for (sx = [-1, 1]) {
           scale([sx, 1, 1]) {
                base_clip();
@@ -815,18 +963,29 @@ module case_3d () {
 
 
 module case_support_block () {
+     extend_back = 3;
+
      intersection() {
           case_transform() {
                linear_extrude(support_block_z) {
-                    translate([0, 2, 0]) {
+                    translate([0, extend_back, 0]) {
                          difference() {
                               centered_square([200, 100], [-0.5, -1]);
-                              centered_square([(hull_x1 - support_block_xy) * 2, 200], [-0.5, -1]);
+                              centered_square([(hull_x1 - support_block_xy_end) * 2, 200], [-0.5, -1]);
                          }
                     }
                }
           }
-          cavity_pos(offset_xy=-1);
+          union() {
+               cavity_pos(offset_xy=-support_block_xy_start);
+               case_transform() {
+                    linear_extrude(support_block_z) {
+                         translate([0, support_block_xy_start]) {
+                              centered_square([hull_x2 * 2, extend_back], [-0.5, 0]);
+                         }
+                    }
+               }
+          }
      }
 }
 
@@ -881,24 +1040,36 @@ module pcb_3d () {
 }
 
 
+module plate_3d () {
+     rotate([typing_angle, 0]) {
+          translate([0, 0, -plate_thickness]) {
+               linear_extrude(plate_thickness) {
+                    difference() {
+                         plate_2d(pcb_border);
+                         switchplate_cuts_2d();
+                    }
+               }
+          }
+     }
+}
+
+
 module usb_3d () {
      bevel = 2;
-     rotate([typing_angle, 0]) {
           translate([
                          0,
-                         key_cutaway_xy / 2 - 5,
-                         -switch_base_height -pcb_thickness + 4
+                         0,
+                         -switch_base_height -pcb_thickness + 5.34
                          ]) {
                rotate([-90, 0, 0]) {
                     linear_extrude(20) {
                          minkowski() {
-                              centered_square([10 - bevel * 2, 18 - bevel * 2]);
+                              centered_square([base_usb_port_width - bevel * 2, 18 - bevel * 2]);
                               circle(r=bevel, $fn=32);
                          }
                     }
                }
           }
-     }
 }
 
 

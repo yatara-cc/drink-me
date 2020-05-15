@@ -7,13 +7,102 @@ encoding utf-8
 Sheet 1 1
 Title "Drink Me"
 Date ""
-Rev "v0.2"
+Rev "v1.0"
 Comp "Yatara"
-Comment1 ""
+Comment1 "USB Mini"
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L MCU_Microchip_ATmega:ATmega32U2-AU U1
+U 1 1 5E168047
+P 2850 2275
+F 0 "U1" H 2850 789 50  0000 C CNN
+F 1 "32U2-AU" H 2850 698 50  0000 C CNN
+F 2 "Package_QFP:TQFP-32_7x7mm_P0.8mm" H 2850 2275 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/doc7799.pdf" H 2850 2275 50  0001 C CNN
+F 4 "csquare([9.2, 9.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "ATMEGA32U2-AURCT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    2850 2275
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Crystal_GND24_Small Y1
+U 1 1 5E132771
+P 1050 1475
+F 0 "Y1" V 1004 1641 50  0000 L CNN
+F 1 "16Mhz" V 1095 1641 50  0000 L CNN
+F 2 "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" H 1050 1475 50  0001 C CNN
+F 3 "~" H 1050 1475 50  0001 C CNN
+F 4 "csquare([3.2, 2.5]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "SER3686CT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    1050 1475
+	0    1    1    0   
+$EndComp
+$Comp
+L keyboard_parts:USB_mini_micro_B J1
+U 1 1 5E36297A
+P 3400 4775
+F 0 "J1" H 3287 5066 60  0000 C CNN
+F 1 "USB_mini_micro_B" H 3250 5025 60  0001 C CNN
+F 2 "keyboard_parts:USB_miniB_hirose_5S8" H 3350 4775 60  0001 C CNN
+F 3 "" H 3350 4775 60  0000 C CNN
+F 4 "csquare([9.6, 7.6]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "H125762CT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    3400 4775
+	1    0    0    -1  
+$EndComp
+$Comp
+L keyboard_parts:SW_PUSH SW1
+U 1 1 5C1541E4
+P 4525 2675
+F 0 "SW1" H 4525 2930 50  0000 C CNN
+F 1 "RESET" H 4525 2839 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_TL3342" H 4525 2675 60  0001 C CNN
+F 3 "" H 4525 2675 60  0000 C CNN
+F 4 "csquare([6.6, 5.1]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "EG5470CT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    4525 2675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:AVR-ISP-6 J0
+U 1 1 5E128D0E
+P 4550 1475
+F 0 "J0" H 4270 1479 50  0000 R CNN
+F 1 "AVR-ISP-6" H 4270 1570 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" V 4300 1525 50  0001 C CNN
+F 3 " ~" H 3275 925 50  0001 C CNN
+	1    4550 1475
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C1
+U 1 1 5E1DE5E9
+P 750 1375
+F 0 "C1" V 521 1375 50  0000 C CNN
+F 1 "22pF" V 612 1375 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 750 1375 50  0001 C CNN
+F 3 "~" H 750 1375 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "311-1103-1-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    750  1375
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:C_Small C2
+U 1 1 5E1D3602
+P 750 1575
+F 0 "C2" V 521 1575 50  0000 C CNN
+F 1 "22pF" V 612 1575 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 750 1575 50  0001 C CNN
+F 3 "~" H 750 1575 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "311-1103-1-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    750  1575
+	0    -1   -1   0   
+$EndComp
 $Comp
 L Device:C_Small C3
 U 1 1 5C150782
@@ -22,7 +111,22 @@ F 0 "C3" H 1117 2971 50  0000 L CNN
 F 1 "0.1μF" H 1117 2880 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1025 2925 50  0001 C CNN
 F 3 "~" H 1025 2925 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "311-1361-1-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
 	1    1025 2925
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C4
+U 1 1 5C1507B2
+P 1275 2925
+F 0 "C4" H 1367 2971 50  0000 L CNN
+F 1 "0.1μF" H 1367 2880 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1275 2925 50  0001 C CNN
+F 3 "~" H 1275 2925 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "311-1361-1-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    1275 2925
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -33,9 +137,139 @@ F 0 "C5" H 1767 2971 50  0000 L CNN
 F 1 "4.7μF" H 1767 2880 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1675 2925 50  0001 C CNN
 F 3 "~" H 1675 2925 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "311-1371-1-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
 	1    1675 2925
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:C_Small C8
+U 1 1 5C15A2BF
+P 1700 2075
+F 0 "C8" V 1471 2075 50  0000 C CNN
+F 1 "1μF" V 1562 2075 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1700 2075 50  0001 C CNN
+F 3 "~" H 1700 2075 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "311-1909-1-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    1700 2075
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5E29D79B
+P 1950 1050
+F 0 "R1" V 1743 1050 50  0000 C CNN
+F 1 "10kΩ" V 1834 1050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1880 1050 50  0001 C CNN
+F 3 "~" H 1950 1050 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "CR0805-JW-103ELFCT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    1950 1050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5C1585B2
+P 3750 3375
+F 0 "R2" V 3543 3375 50  0000 C CNN
+F 1 "10kΩ" V 3634 3375 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3680 3375 50  0001 C CNN
+F 3 "~" H 3750 3375 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "CR0805-JW-103ELFCT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    3750 3375
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5C15A143
+P 1950 1775
+F 0 "R3" V 1743 1775 50  0000 C CNN
+F 1 "22Ω" V 1834 1775 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1880 1775 50  0001 C CNN
+F 3 "~" H 1950 1775 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "118-CR0805-JW-220ELFCT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    1950 1775
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5C15A0FC
+P 1950 1875
+F 0 "R4" V 1743 1875 50  0000 C CNN
+F 1 "22Ω" V 1834 1875 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1880 1875 50  0001 C CNN
+F 3 "~" H 1950 1875 50  0001 C CNN
+F 4 "csquare([2, 1.2]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "118-CR0805-JW-220ELFCT-ND" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    1950 1875
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:Polyfuse_Small F1
+U 1 1 5E2FBE72
+P 3900 4625
+F 0 "F1" V 3695 4625 50  0000 C CNN
+F 1 "500mA" V 3786 4625 50  0000 C CNN
+F 2 "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 3950 4425 50  0001 L CNN
+F 3 "~" H 3900 4625 50  0001 C CNN
+F 4 "csquare([3.2, 1.6]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+F 5 "0ZCJ0050AF2E" H 1950 1050 50  0001 C CNN "BomReferenceDigiKey"
+	1    3900 4625
+	0    1    1    0   
+$EndComp
+$Comp
+L keyboard_parts:KEYSW K0
+U 1 1 5C16D8B8
+P 1100 5875
+F 0 "K0" H 1100 6108 60  0000 C CNN
+F 1 "KEYSW" H 1100 5775 60  0001 C CNN
+F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 1100 5875 60  0001 C CNN
+F 3 "" H 1100 5875 60  0000 C CNN
+F 4 "translate([0.635, -3.81]) csquare([14.5, 5.9]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+	1    1100 5875
+	1    0    0    -1  
+$EndComp
+$Comp
+L keyboard_parts:KEYSW K1
+U 1 1 5C16D970
+P 1850 5875
+F 0 "K1" H 1850 6108 60  0000 C CNN
+F 1 "KEYSW" H 1850 5775 60  0001 C CNN
+F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 1850 5875 60  0001 C CNN
+F 3 "" H 1850 5875 60  0000 C CNN
+F 4 "translate([0.635, -3.81]) csquare([14.5, 5.9]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+	1    1850 5875
+	1    0    0    -1  
+$EndComp
+$Comp
+L keyboard_parts:KEYSW K2
+U 1 1 5C16D906
+P 2600 5875
+F 0 "K2" H 2600 6108 60  0000 C CNN
+F 1 "KEYSW" H 2600 5775 60  0001 C CNN
+F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 2600 5875 60  0001 C CNN
+F 3 "" H 2600 5875 60  0000 C CNN
+F 4 "translate([0.635, -3.81]) csquare([14.5, 5.9]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+	1    2600 5875
+	1    0    0    -1  
+$EndComp
+$Comp
+L keyboard_parts:KEYSW K3
+U 1 1 5C16D9DC
+P 3350 5875
+F 0 "K3" H 3350 6108 60  0000 C CNN
+F 1 "KEYSW" H 3350 5775 60  0001 C CNN
+F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 3350 5875 60  0001 C CNN
+F 3 "" H 3350 5875 60  0000 C CNN
+F 4 "translate([0.635, -3.81]) csquare([14.5, 5.9]);" H 1950 1050 50  0001 C CNN "ComponentStencilOpenSCAD"
+	1    3350 5875
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 4625 3650 4625
 Wire Wire Line
 	1025 2625 1025 2725
 Wire Wire Line
@@ -51,52 +285,6 @@ Wire Wire Line
 Wire Wire Line
 	1675 3125 1675 3025
 $Comp
-L keyboard_parts:SW_PUSH SW1
-U 1 1 5C1541E4
-P 4525 2675
-F 0 "SW1" H 4525 2930 50  0000 C CNN
-F 1 "RESET" H 4525 2839 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_SPST_TL3342" H 4525 2675 60  0001 C CNN
-F 3 "" H 4525 2675 60  0000 C CNN
-	1    4525 2675
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R2
-U 1 1 5C1585B2
-P 3750 3375
-F 0 "R2" V 3543 3375 50  0000 C CNN
-F 1 "10kΩ" V 3634 3375 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3680 3375 50  0001 C CNN
-F 3 "~" H 3750 3375 50  0001 C CNN
-	1    3750 3375
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	3550 4625 3650 4625
-$Comp
-L Device:R R4
-U 1 1 5C15A0FC
-P 1950 1875
-F 0 "R4" V 1743 1875 50  0000 C CNN
-F 1 "22Ω" V 1834 1875 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1880 1875 50  0001 C CNN
-F 3 "~" H 1950 1875 50  0001 C CNN
-	1    1950 1875
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Device:R R3
-U 1 1 5C15A143
-P 1950 1775
-F 0 "R3" V 1743 1775 50  0000 C CNN
-F 1 "22Ω" V 1834 1775 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1880 1775 50  0001 C CNN
-F 3 "~" H 1950 1775 50  0001 C CNN
-	1    1950 1775
-	0    1    1    0   
-$EndComp
-$Comp
 L power:VCC #PWR0108
 U 1 1 5C15A246
 P 3650 4525
@@ -107,67 +295,12 @@ F 3 "" H 3650 4525 50  0001 C CNN
 	1    3650 4525
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:C_Small C8
-U 1 1 5C15A2BF
-P 1700 2075
-F 0 "C8" V 1471 2075 50  0000 C CNN
-F 1 "1μF" V 1562 2075 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1700 2075 50  0001 C CNN
-F 3 "~" H 1700 2075 50  0001 C CNN
-	1    1700 2075
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	2100 1875 2150 1875
 Wire Wire Line
 	2150 1775 2100 1775
 Wire Wire Line
 	3650 4525 3650 4625
-$Comp
-L keyboard_parts:KEYSW K0
-U 1 1 5C16D8B8
-P 1100 5875
-F 0 "K0" H 1100 6108 60  0000 C CNN
-F 1 "KEYSW" H 1100 5775 60  0001 C CNN
-F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 1100 5875 60  0001 C CNN
-F 3 "" H 1100 5875 60  0000 C CNN
-	1    1100 5875
-	1    0    0    -1  
-$EndComp
-$Comp
-L keyboard_parts:KEYSW K2
-U 1 1 5C16D906
-P 2600 5875
-F 0 "K2" H 2600 6108 60  0000 C CNN
-F 1 "KEYSW" H 2600 5775 60  0001 C CNN
-F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 2600 5875 60  0001 C CNN
-F 3 "" H 2600 5875 60  0000 C CNN
-	1    2600 5875
-	1    0    0    -1  
-$EndComp
-$Comp
-L keyboard_parts:KEYSW K1
-U 1 1 5C16D970
-P 1850 5875
-F 0 "K1" H 1850 6108 60  0000 C CNN
-F 1 "KEYSW" H 1850 5775 60  0001 C CNN
-F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 1850 5875 60  0001 C CNN
-F 3 "" H 1850 5875 60  0000 C CNN
-	1    1850 5875
-	1    0    0    -1  
-$EndComp
-$Comp
-L keyboard_parts:KEYSW K3
-U 1 1 5C16D9DC
-P 3350 5875
-F 0 "K3" H 3350 6108 60  0000 C CNN
-F 1 "KEYSW" H 3350 5775 60  0001 C CNN
-F 2 "Yatara:Kailh_PCB_Socket_1511_MX" H 3350 5875 60  0001 C CNN
-F 3 "" H 3350 5875 60  0000 C CNN
-	1    3350 5875
-	1    0    0    -1  
-$EndComp
 NoConn ~ 3550 4925
 $Comp
 L power:GND #PWR0112
@@ -185,32 +318,10 @@ Wire Wire Line
 Wire Wire Line
 	2150 5875 2150 6225
 Connection ~ 2150 6225
-$Comp
-L Connector:AVR-ISP-6 J0
-U 1 1 5E128D0E
-P 4550 1475
-F 0 "J0" H 4270 1479 50  0000 R CNN
-F 1 "AVR-ISP-6" H 4270 1570 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" V 4300 1525 50  0001 C CNN
-F 3 " ~" H 3275 925 50  0001 C CNN
-	1    4550 1475
-	-1   0    0    -1  
-$EndComp
 Wire Wire Line
 	1550 5875 1550 6075
 Wire Wire Line
 	800  5875 800  6075
-$Comp
-L Device:Crystal_GND24_Small Y1
-U 1 1 5E132771
-P 1050 1475
-F 0 "Y1" V 1004 1641 50  0000 L CNN
-F 1 "16Mhz" V 1095 1641 50  0000 L CNN
-F 2 "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" H 1050 1475 50  0001 C CNN
-F 3 "~" H 1050 1475 50  0001 C CNN
-	1    1050 1475
-	0    1    1    0   
-$EndComp
 $Comp
 L power:GND #PWR0101
 U 1 1 5E1574A5
@@ -220,17 +331,6 @@ F 1 "GND" H 905 1877 50  0000 C CNN
 F 2 "" H 900 2050 50  0001 C CNN
 F 3 "" H 900 2050 50  0001 C CNN
 	1    900  2050
-	1    0    0    -1  
-$EndComp
-$Comp
-L MCU_Microchip_ATmega:ATmega32U2-AU U1
-U 1 1 5E168047
-P 2850 2275
-F 0 "U1" H 2850 789 50  0000 C CNN
-F 1 "32U2-AU" H 2850 698 50  0000 C CNN
-F 2 "Package_QFP:TQFP-32_7x7mm_P0.8mm" H 2850 2275 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/doc7799.pdf" H 2850 2275 50  0001 C CNN
-	1    2850 2275
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -277,28 +377,6 @@ F 3 "" H 1500 2175 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1500 2075 1500 2175
-$Comp
-L Device:C_Small C2
-U 1 1 5E1D3602
-P 750 1575
-F 0 "C2" V 521 1575 50  0000 C CNN
-F 1 "22pF" V 612 1575 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 750 1575 50  0001 C CNN
-F 3 "~" H 750 1575 50  0001 C CNN
-	1    750  1575
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Device:C_Small C1
-U 1 1 5E1DE5E9
-P 750 1375
-F 0 "C1" V 521 1375 50  0000 C CNN
-F 1 "22pF" V 612 1375 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 750 1375 50  0001 C CNN
-F 3 "~" H 750 1375 50  0001 C CNN
-	1    750  1375
-	0    -1   1    0   
-$EndComp
 Connection ~ 900  1900
 Wire Wire Line
 	900  1900 900  2050
@@ -334,17 +412,6 @@ F 2 "" H 4650 975 50  0001 C CNN
 F 3 "" H 4650 975 50  0001 C CNN
 	1    4650 975 
 	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R1
-U 1 1 5E29D79B
-P 1950 1050
-F 0 "R1" V 1743 1050 50  0000 C CNN
-F 1 "10kΩ" V 1834 1050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1880 1050 50  0001 C CNN
-F 3 "~" H 1950 1050 50  0001 C CNN
-	1    1950 1050
-	0    1    1    0   
 $EndComp
 Wire Wire Line
 	2150 1175 2050 1175
@@ -382,17 +449,6 @@ Wire Wire Line
 	1025 2725 1275 2725
 Wire Wire Line
 	1275 2725 1275 2825
-$Comp
-L Device:C_Small C4
-U 1 1 5C1507B2
-P 1275 2925
-F 0 "C4" H 1367 2971 50  0000 L CNN
-F 1 "0.1μF" H 1367 2880 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 1275 2925 50  0001 C CNN
-F 3 "~" H 1275 2925 50  0001 C CNN
-	1    1275 2925
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1675 2725 1275 2725
 Connection ~ 1275 2725
@@ -446,17 +502,6 @@ Text GLabel 1800 1875 0    50   Input ~ 0
 D-
 Text GLabel 3550 4725 2    50   Input ~ 0
 D-
-$Comp
-L Device:Polyfuse_Small F1
-U 1 1 5E2FBE72
-P 3900 4625
-F 0 "F1" V 3695 4625 50  0000 C CNN
-F 1 "500mA" V 3786 4625 50  0000 C CNN
-F 2 "Fuse:Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 3950 4425 50  0001 L CNN
-F 3 "~" H 3900 4625 50  0001 C CNN
-	1    3900 4625
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	3650 4625 3800 4625
 Connection ~ 3650 4625
@@ -574,17 +619,6 @@ Wire Wire Line
 	3650 5875 3650 6075
 Wire Wire Line
 	2900 5875 2900 6075
-$Comp
-L keyboard_parts:USB_mini_micro_B J1
-U 1 1 5E36297A
-P 3400 4775
-F 0 "J1" H 3287 5066 60  0000 C CNN
-F 1 "USB_mini_micro_B" H 3250 5025 60  0001 C CNN
-F 2 "keyboard_parts:USB_miniB_hirose_5S8" H 3350 4775 60  0001 C CNN
-F 3 "" H 3350 4775 60  0000 C CNN
-	1    3400 4775
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3550 5025 3650 5025
 Wire Wire Line

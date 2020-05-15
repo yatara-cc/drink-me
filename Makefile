@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-VERSION := v0.2
+VERSION := v1.0
 VERSION_FLAT := $(shell echo $(VERSION) | sed 's/\W/-/g')
 VENV := .venv
 
@@ -18,6 +18,7 @@ clean :
 stl : \
 	stl/drink-me.$(VERSION).case.stl \
 	stl/drink-me.$(VERSION).base.stl \
+	stl/drink-me.$(VERSION).back.stl \
 	stl/drink-me.$(VERSION).rest.stl
 
 install-python :
@@ -78,12 +79,21 @@ gerber/drink-me.$(VERSION)-$(1).gerber.zip : kicad/drink-me-$(1)/drink-me.kicad_
 	  -d kicad/drink-me-$(1)/
 	zip -j $$@ kicad/drink-me-$(1)/gerber/*
 
+# Digi-Key uses the part of the filename up to the first period as the BOM name.
+bom/drink-me-$(VERSION_FLAT)-$(1).bom-digikey.csv : kicad/drink-me-$(1)/drink-me.sch
+	mkdir -p bom
+	$(VENV)/bin/python python/generate_bom_digikey.py -v \
+	  $$^ > $$@
+
 vector/drink-me-$(1).pcb.traces.svg : kicad/drink-me-$(1)/drink-me.kicad_pcb
 	kicad2svg $$< $$@
 
 
 GERBER += $(GERBER) \
 	gerber/drink-me.$(VERSION)-$(1).gerber.zip
+
+BOM += $(BOM) \
+	bom/drink-me-$(VERSION_FLAT)-$(1).bom-digikey.csv
 
 TRACES_SVG += $(TRACES_SVG) \
 	vector/drink-me-$(1).pcb.traces.svg
@@ -97,6 +107,8 @@ $(eval $(call PCB,usb-micro))
 
 
 gerber : $(GERBER)
+
+bom : $(BOM)
 
 export-pcb-traces : $(TRACES_SVG)
 

@@ -23,7 +23,59 @@ You can also use the online [QMK Configurator](https://config.qmk.fm/#/yatara/dr
 
 ### Help & Support
 
-Buyers can access support by sending a message to the email address on the PayPal invoice.
+Buyers can access personalised support by sending a message to the email address on the PayPal invoice.
+
+Realtime support may also be available on [Discord](https://discord.gg/yeXgVFX).
+
+
+## Production
+
+You can use the files in the Releases section of this repository to manufacture the PCB and printed parts.
+
+### PCB
+
+PCBs can be produced by submitting the Gerber files to a PCB manufacturer and requesting a 1.6mm thick PCB.
+
+The PCBs for the official group by were manufactured by [JLCPCB](https://jlcpcb.com/) and the PCB designs are tailored for their service.
+
+
+#### Bill of Materials
+
+The following components (or equivalent) are also required for the PCB:
+
+-   1 x ATMEGA32U2-AUR
+-   1 x 16MHz 18P Crystal 
+-   4 x Kailh MX Hotswap Sockets - available from [KBDFans](https://kbdfans.com/)
+-   1 x Reset Switch SPST-NO 0.05A 12V
+-   1 x 4.7µF 0805 Capacitor
+-   1 x 1.0µF 0805 Capacitor
+-   2 x 0.1µF 0805 Capacitor
+-   2 x 22pF 0805 Capacitor
+-   2 x 5.1kΩ 0805 Resistor (for USB-C only)
+-   2 x 10kΩ 0805 Resistor
+-   2 x 22Ω 0805 Resistor
+-   1 x 500mA 1206 Fuse
+-   Plus one of the following, depending on the PCB USB socket selected:
+    -   1 x Hirose USB2.0 Micro B SMD ZX62D-B-5PA8(30)
+    -   1 x Hirose USB2.0 Mini B SMD UX60SC-MB-5S8(80)
+    -   1 x Korean Hroparts USB Type C TYPE-C-31-M-12 - available from [LCSC](https://lcsc.com/)
+-   4 x MX-compatible switch modules - available from many sources
+-   4 x MX-compatible keycaps - available from many sources
+
+Where not specifically indicated, these components are available from Digi-Key, and compatible BOM files are included in releases for these parts.
+
+
+### Printed Parts
+
+Four printed parts are available:
+
+-   Case: the main part of the keyboard that holds the PCB and switches
+    -   This piece requires support material enabled for FDM printing
+-   Base: and integrated base, back and thumb-rest
+-   Back: a clip-on back to protect the PCB from dust
+-   Rest: a separate thumb-rest
+
+The Base and Back are “snap-fit”; they require fine tolerances so it is recommended to experiement with the horizontal or XY offset in your G-code slicer to achieve the most accurate results.
 
 
 ## Modification and Development
@@ -64,7 +116,7 @@ Components from the following libraries were used, but these are not required in
 -   [Yatara KiCad library](https://github.com/yatara-cc/kicad)
 -   [TMK symbol library](https://github.com/tmk/kicad_lib_tmk)
 -   [TMK footprint library](https://github.com/tmk/keyboard_parts.pretty )
--   [SnapEDA GCT_USB4105_REVA libraries](https://www.snapeda.com/parts/USB4105-GF-A/GCT/view-part/)
+-   [ai03 USB C libraries](https://github.com/ai03-2725/Type-C.pretty)
 
 
 #### Export Gerber files for manufacture
