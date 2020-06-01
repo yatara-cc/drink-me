@@ -15,6 +15,7 @@ clean :
 	  gerber \
 	  stl
 
+
 stl : \
 	stl/drink-me.$(VERSION).case.stl \
 	stl/drink-me.$(VERSION).base.stl \
@@ -48,6 +49,9 @@ update-version :
 	  -e 's/\(Rev "\)v[0-9a-z.-]*\("\)/\1$(VERSION)\2/' \
 	  kicad/drink-me*/drink-me.sch
 
+
+vector/drink-me.plate.dxf : openscad/drink-me.plate.scad openscad/drink-me.scad
+	openscad -o $@ $<
 
 vector/drink-me.pcb.%.dxf : openscad/drink-me.pcb.%.scad openscad/drink-me.scad
 	openscad -o $@ $<

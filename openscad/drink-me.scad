@@ -21,6 +21,8 @@ pcb_slot_overlap = 1;
 plate_thickness = 1.2;
 plate_switch_clearance = 0.25;
 plate_switch_r = 0.3;
+plate_bevel = false;
+plate_tool_diameter = false;
 
 base_clip_overlap = 0.55;
 base_clearance_xy = 0.3;
@@ -438,7 +440,7 @@ module pcb_2d (border) {
 }
 
 
-module plate_2d (border) {
+module plate_outer_2d (border) {
      union() {
           translate([0, plate_dy_front]) {
                hull_keys(border);
@@ -450,8 +452,35 @@ module plate_2d (border) {
 }
 
 
+module plate_2d (border) {
+    difference() {
+         if (plate_bevel) {
+              minkowski() {
+                   plate_outer_2d(border - plate_bevel / 2);
+                   circle(d=plate_bevel);
+              }
+         } else {
+              plate_outer_2d(border);
+         }
+         switchplate_cuts_2d();
+    }
+}
+
+
 module switch_cutout() {
-     if (integrated_plate) {
+     if (plate_tool_diameter) {
+          centered_square([switch_cutout_xy + plate_switch_clearance, switch_cutout_xy - plate_tool_diameter]);
+          for (a = [0, 180]) {
+               rotate(a) {
+                    translate([0, -(switch_cutout_xy + plate_switch_clearance - plate_tool_diameter) / 2]) {
+                         minkowski() {
+                              circle(d=plate_tool_diameter, $fn=32);
+                              centered_square([switch_cutout_xy + plate_switch_clearance - plate_switch_r * 2, 4.5 - plate_tool_diameter], [-0.5, 0]);
+                         }
+                    }
+               }
+          }
+     } else if (integrated_plate) {
           minkowski() {
                centered_square(switch_cutout_xy + plate_switch_clearance - 2 * plate_switch_r);
                circle(plate_switch_r, $fn=8);
@@ -1044,10 +1073,7 @@ module plate_3d () {
      rotate([typing_angle, 0]) {
           translate([0, 0, -plate_thickness]) {
                linear_extrude(plate_thickness) {
-                    difference() {
-                         plate_2d(pcb_border);
-                         switchplate_cuts_2d();
-                    }
+                    plate_2d(pcb_border);
                }
           }
      }
